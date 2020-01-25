@@ -55,6 +55,7 @@ def scrape_article(url):
     ps = root.find_all(['h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'])
     ps.insert(0, h1)    # add the title
     content = [tag2md(p) for p in ps]
+    
     # print(content)
     return content 
 
