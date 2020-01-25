@@ -1,7 +1,7 @@
 # importing the necessary packages
 import requests
 from bs4 import BeautifulSoup
-import numpy as np
+import json, numpy as np
 import re
 import sys
 from googlesearch import search
@@ -15,9 +15,9 @@ def get_top_results(query):
     for i in search(query,        # The query you want to run
                     tld = 'com',  # The top level domain
                     lang = 'en',  # The language
-                    num = 15,     # Number of results per page
+                    num = 10,     # Number of results per page
                     start = 0,    # First result to retrieve
-                    stop = 15,  # Last result to retrieve
+                    stop = 10,  # Last result to retrieve
                     pause = 3.0,  # Lapse between HTTP requests
                 ):
                 my_results_list.append(i)
@@ -59,8 +59,9 @@ def scrape_article(url):
     #removing special charcters and numbers.
     filter = ''.join([chr(i) for i in range(1, 32)])
     strings.translate(str.maketrans('', '', filter))
-    pat = re.compile(r'[^a-zA-Z ]+')
+    pat = re.compile(r'[^A-Za-za-zÀ-ÿ ]+')
     answer = re.sub(pat, '', strings)
+    #answer = re.sub('[!@#$]', '', strings)
     # print(content)
     #return content
     ##print(answer)
@@ -82,10 +83,10 @@ def tag2md(tag):
 def printResult(query):
     combine_strings(get_top_results(query))
     print("Hi there")
-    sys.stdout.flush()
+    #sys.stdout.flush()
 
 if __name__ == "__main__":
-    # scrape_article(link)
-   # combine_strings(get_top_results('Trump'))
-    printResult("Pokemon")
+    query = str(sys.argv[1])
+    combine_strings(get_top_results(query))
+    # printResult("Pokemon")
     
