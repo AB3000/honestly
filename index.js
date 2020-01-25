@@ -20,7 +20,7 @@ var mongoose = require("mongoose");
 //Connection start
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/honestly?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   function(error) {
     if (error) {
@@ -46,31 +46,27 @@ app.use(express.static(__dirname + '/public'));
 
 app.get("/wordle", (req, res) => {
 	var search = req.query["searchedQuery"]
-	var contribution = req.query["contribution"]
+	var cont = req.query["contribution"]
 
 	// console.log("search is " + search  + " and cont is " + contribution);
 
 	//scrape --> call py function 
 
-	if(contribution != null){
+	if(cont!= null){
 		//save to db
-		console.log("search is " + search)
-		console.log(word.find())
-
-		word.findOne({keyword: search}, (err, wordData) => {
-			console.log(wordData);
-			if(wordData){
-				//add to contribution string
+		word.findOne({keyword: search}, "keyword contributions", (err, wordData) => {
+			if(wordData != ""){ //not empty 
+				wordData.contributions += " " + cont;
+				wordData.save();
 				 
-			} else {
-
+			} else { //word does not exist in database
+				var newWord = new word({
+					keyword: search,
+					contributions: cont,
+				});
+				newWord.save();	
 			}
-			// removedFlag = 1;
-			// postData.description = "";
-			// postData.isRemoved = true;  
-			// postData.save();
 		});
-		console.log("this is a contribution")
 	}
 
 	//retrieve from db 

@@ -18,7 +18,6 @@ let wordSchema = new Schema({
     contributions: {
         type: String, //Contribution String to keyword
         required: false,
-        default: "", 
     }
 });
 
