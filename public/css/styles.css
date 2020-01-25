@@ -28,16 +28,10 @@
   --gold: #C28E0E;
 }
 
-.title {
-	font-size: 500%;
-	color: var(--lightGray);
-}
-
 html,body{
     background-color: var(--darkGray);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
     font-family: 'GoudyBookletter';
 }
 .h1{
@@ -45,16 +39,18 @@ html,body{
 }
 
 .title{
-    color: var(--white);
+	font-size: 100px;
+	color: var(--white);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 40px;
+    /*height: 40px;
     border-radius: 40px;
-    padding: 10px;
+    padding: 10px;*/
 }
-.search-btn{
+
+/*.search-btn{
     color: #000000;
     float: bottom;
     width:80px;
@@ -65,15 +61,14 @@ html,body{
     justify-content: center;
     align-items: center;
     
-}
+}*/
+
 .search-input{
     border: none;
-    background: none;
+    background: var(--white);
     outline: none;
     float: left;
-    padding: 0;
-    color: #f8f8f8;
     font-size: 16px;
     line-height: 40px;
-    width: 60px
+    width: 20%;
 }
