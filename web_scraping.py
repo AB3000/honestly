@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import numpy as np
 import re
+import sys
 from googlesearch import search
 
 # test link
@@ -78,9 +79,13 @@ def tag2md(tag):
     elif tag.name == 'pre':
         return f'```\n{tag.text}\n```'
 
+def printResult(query):
+    combine_strings(get_top_results(query))
+    print("Hi there")
+    sys.stdout.flush()
 
 if __name__ == "__main__":
     # scrape_article(link)
-    combine_strings(get_top_results('Trump'))
-   
+   # combine_strings(get_top_results('Trump'))
+    printResult("Pokemon")
     

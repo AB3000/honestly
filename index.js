@@ -3,6 +3,7 @@ var unirest = require("unirest");
 var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
 var app = require("express")(); 
 var bodyParser = require("body-parser"); 
+const pySpawner = require('child_process').spawnSync;
 
 //Set view engine to ejs
 app.set("view engine", "ejs"); 
@@ -40,7 +41,17 @@ app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+
 var scraped = "I've never been much of a mobile gamer, but, forget everything you think you know about mobile games because Raid Shadow Legends is one of the most ambitious RPG projects of 2019 has just been released and will change everything. Just look at the level of detail of these characters! If you use the code in the description you can start with 50,000 silver and join the Special Launch Tournament, and you better hurry because it's getting big fast! You can play for totally free with the link below on your smartphone.";
+
+console.log("Proc starting");
+var scraperProc = pySpawner('printResult', ['web_scraping.py', 'Pokemon'], {stdio: 'inherit'});
+console.log("Proc finished");
+scraperProc.stdout.on('data', function(data) {
+scraped = data.toString();
+});
+//console.log(scraped);
+
 req.query({
 	"max_words": "200",
 	"font": "Tahoma",
