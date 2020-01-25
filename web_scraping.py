@@ -25,9 +25,10 @@ def get_top_results(query):
     
 
 def combine_strings(links):
+    articles = ""
     for link in links:
-            print(scrape_article(link))
-
+           articles+=((scrape_article(link)))
+    print(articles)
 
 def scrape_article(url):
     res = requests.get(url)
@@ -53,13 +54,15 @@ def scrape_article(url):
     ps = root.find_all(['h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'])
     ps.insert(0, h1)    # add the title
     content = [tag2md(p) for p in ps]
-    
-    #removing special charcters and numbers. 
+    strings = str(content)
+    #removing special charcters and numbers.
+    filter = ''.join([chr(i) for i in range(1, 32)])
+    strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^a-zA-Z ]+')
-    answer = re.sub(pat, '', str(content))
+    answer = re.sub(pat, '', strings)
     # print(content)
     #return content
-    print(answer)
+    ##print(answer)
     return answer 
 
 
