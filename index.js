@@ -40,7 +40,7 @@ app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-
+var scraped = "I've never been much of a mobile gamer, but, forget everything you think you know about mobile games because Raid Shadow Legends is one of the most ambitious RPG projects of 2019 has just been released and will change everything. Just look at the level of detail of these characters! If you use the code in the description you can start with 50,000 silver and join the Special Launch Tournament, and you better hurry because it's getting big fast! You can play for totally free with the link below on your smartphone.";
 req.query({
 	"max_words": "200",
 	"font": "Tahoma",
@@ -61,7 +61,7 @@ req.headers({
 });
 req.type("json");
 req.send({
-	"text": "I want to be the very best, Like no one ever was. To catch them is my real test, To train them is my cause! (I will travel across the land, Searching far and wide. Each Pokemon to understand The power that's inside!) Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Every challenge along the way, With courage I will face! I will battle every day, To claim my rightful place! Come with me, the time is right, There's no better team! Arm in arm, we'll win the fight, It's always been our dream! Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Po-ke-mon!",
+	"text": scraped,
 	"scale": 0.5,
 	"width": 800,
 	"height": 800,
@@ -72,7 +72,7 @@ req.send({
 		"#3F681C"
 	],
 	"font": "Tahoma",
-	"use_stopwords": false,
+	"use_stopwords": true,
 	"language": "en",
 	"uppercase": false
 });
