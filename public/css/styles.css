@@ -1,7 +1,12 @@
+@font-face {
+    font-family: GoudyBookletter;
+    src: url("/public/fonts/GoudyBookletter1911-Regular.ttf");
+}
+
 html,body{
     background-color: #632727;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
-    font-family: 'Helvetica';
+    font-family: 'GoudyBookletter';
     }
