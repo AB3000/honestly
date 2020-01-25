@@ -4,6 +4,7 @@ var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textT
 var express = require("express");
 var app = express(); 
 var bodyParser = require("body-parser"); 
+var user = require("./models/word"); //reference to word schema
 
 //Set view engine to ejs
 app.set("view engine", "ejs"); 
