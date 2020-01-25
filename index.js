@@ -61,7 +61,7 @@ req.headers({
 });
 req.type("json");
 req.send({
-	"text": "This is a test. I repeat, this is a test. We are only testing the functionality of this api, nothing else. End of test.",
+	"text": "I want to be the very best, Like no one ever was. To catch them is my real test, To train them is my cause! (I will travel across the land, Searching far and wide. Each Pokemon to understand The power that's inside!) Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Every challenge along the way, With courage I will face! I will battle every day, To claim my rightful place! Come with me, the time is right, There's no better team! Arm in arm, we'll win the fight, It's always been our dream! Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Gotta catch em' all! Pokemon! Gotta catch em' all! It's you and me, I know it's my destiny! Pokemon! Oh, you're my best friend, In a world we must defend! Pokemon! Gotta catch em' all! (A heart so true, Our courage will pull us through!) You teach me and I'll teach you, Po-ke-mon! Gotta catch em' all! Gotta catch em' all! Po-ke-mon!",
 	"scale": 0.5,
 	"width": 800,
 	"height": 800,
@@ -72,7 +72,7 @@ req.send({
 		"#3F681C"
 	],
 	"font": "Tahoma",
-	"use_stopwords": true,
+	"use_stopwords": false,
 	"language": "en",
 	"uppercase": false
 });
