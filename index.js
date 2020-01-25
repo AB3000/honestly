@@ -1,17 +1,34 @@
 const http = require('http');
 var unirest = require("unirest");
 var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
-const express = require("express");
-const app = express();
+var app = require("express")(); 
+var bodyParser = require("body-parser"); 
+
+//Set view engine to ejs
+app.set("view engine", "ejs"); 
+
+//Tell Express where we keep our index.ejs
+app.set("views", __dirname + "\\views"); 
+
+//Use body-parser
+app.use(bodyParser.urlencoded({ extended: false })); 
+
+var wordle = "asdf";
+
+//Instead of sending Hello World, we render index.ejs
+app.get("/", (req, res) => { res.render("wordle", {base64: wordle}) }); 
+
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-app.use('/', express.static(__dirname + '/'));
 
+//app.use('/', express.static(__dirname + '/'));
+/*
 app.get('/', function(req, res) {
-    res.sendFile('test.html', {root: __dirname })
-});
+    //res.sendFile('test.html', {root: __dirname })
+    res.render(__dirname + "test.html", {base64:wordle});
+});*/
 /*
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
@@ -46,8 +63,8 @@ req.type("json");
 req.send({
 	"text": "This is a test. I repeat, this is a test. We are only testing the functionality of this api, nothing else. End of test.",
 	"scale": 0.5,
-	"width": 1800,
-	"height": 1800,
+	"width": 800,
+	"height": 800,
 	"colors": [
 		"#375E97",
 		"#FB6542",
@@ -63,7 +80,8 @@ req.send({
 req.end(function (res) {
 	if (res.error) throw new Error(res.error);
 	//var image = new Image()
-	//image.src = res.body;
 
-	console.log(res.body);
+	//image.src = res.body;
+	wordle = res.body;
+	//console.log(res.body);
 });
