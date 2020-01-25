@@ -5,6 +5,8 @@ import numpy as np
 from googlesearch import search
 
 
+
+
 # test link
 link = 'https://en.wikipedia.org/wiki/Donald_Trump'
 
@@ -14,12 +16,12 @@ def get_top_results(query):
     for i in search(query,        # The query you want to run
                     tld = 'com',  # The top level domain
                     lang = 'en',  # The language
-                    num = 10,     # Number of results per page
+                    num = 15,     # Number of results per page
                     start = 0,    # First result to retrieve
-                    stop = 10,  # Last result to retrieve
+                    stop = 15,  # Last result to retrieve
                     pause = 3.0,  # Lapse between HTTP requests
                 ):
-        my_results_list.append(i)
+                my_results_list.append(i)
         
     return my_results_list
     
@@ -73,5 +75,6 @@ def tag2md(tag):
 
 if __name__ == "__main__":
     # scrape_article(link)
-    combine_strings(get_top_results('pewdiepie'))
+    combine_strings(get_top_results('dump'))
+   
     
