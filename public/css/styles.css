@@ -9,13 +9,32 @@
 }
 
 :root {
-  --white: #f8f8f8;  
+  --darkGray: #212121;  
+}
+
+:root {
+  --gray: #303030;  
+}
+
+:root {
+  --lightGray: #424242;
+}
+
+:root {
+  --white: #FFFFFF;
+}
+
+:root {
+  --gold: #C28E0E;
+}
+
+.title {
+	font-size: 500%;
+	color: var(--lightGray);
 }
 
 html,body{
-    margin: 0;
-    padding: 0;
-    background: var(--black);
+    background-color: var(--darkGray);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
