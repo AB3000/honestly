@@ -28,9 +28,8 @@ def get_top_results(query):
 
 def combine_strings(links):
     for link in links:
-            print("====", link)
             print(scrape_article(link))
-            print("===============================\n\n\n\n")
+
 
 def scrape_article(url):
     res = requests.get(url)
