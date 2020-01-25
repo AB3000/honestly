@@ -1,7 +1,8 @@
 const http = require('http');
 var unirest = require("unirest");
 var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
-var app = require("express")(); 
+var express = require("express");
+var app = express(); 
 var bodyParser = require("body-parser"); 
 
 //Set view engine to ejs
@@ -18,7 +19,8 @@ var wordle = "asdf";
 //Instead of sending Hello World, we render index.ejs
 app.get("/", (req, res) => { res.render("wordle", {base64: wordle}) }); 
 
-
+//Allegedly we have to use the public folder in order to reference styles.css
+app.use(express.static(__dirname + '/public'));
 const hostname = '127.0.0.1';
 const port = 3000;
 
