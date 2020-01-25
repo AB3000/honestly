@@ -42,6 +42,18 @@ const port = 3000;
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+var spawn = require('child_process').spawn,
+    py    = spawn('python', ['web_scraping.py']),
+    data = [1,2,3,4,5,6,7,8,9],
+    dataString = '';
+py.stdout.on('data', function(data){
+  dataString += data.toString();
+});
+py.stdout.on('end', function(){
+  console.log('TEXT: ',dataString);
+});
+py.stdin.write(JSON.stringify(data));
+py.stdin.end();
 /*
 var scraped = "I've never been much of a mobile gamer, but, forget everything you think you know about mobile games because Raid Shadow Legends is one of the most ambitious RPG projects of 2019 has just been released and will change everything. Just look at the level of detail of these characters! If you use the code in the description you can start with 50,000 silver and join the Special Launch Tournament, and you better hurry because it's getting big fast! You can play for totally free with the link below on your smartphone.";
 req.query({
