@@ -1,0 +1,19 @@
+{
+  "name": "honestly",
+  "version": "1.0.0",
+  "description": "visualize what the internet is thinking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AB3000/honestly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AB3000/honestly/issues"
+  },
+  "homepage": "https://github.com/AB3000/honestly#readme"
+}
