@@ -67,9 +67,20 @@ app.get("/wordle", (req, res) => {
 				newWord.save();	
 			}
 		});
+	} else { //searched for a new object
+
 	}
 
-	//retrieve from db 
+	var textRetrieved = "" 
+	//retrieve word from db, get contributions, add to textRetrieved  
+	word.findOne({keyword: search}, "contributions", (err, wordData) => {
+		if(wordData !== null){ //not empty 
+			textRetrieved = wordData.contributions; 
+			console.log(textRetrieved); 
+		} //else add nothing 
+	});
+
+
 
 
 	//combine the results 
@@ -80,7 +91,6 @@ app.get("/wordle", (req, res) => {
 	
 
 	res.render("wordle", {base64: search, keyword: search}) 
-	//check if keyword 
 
 	
 });
