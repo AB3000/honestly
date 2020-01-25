@@ -44,12 +44,12 @@ app.listen(port, hostname, () => {
 });
 
 
-var scraped = "iantic is going for broke or theyre going to have to slow down the pace of change theyve got going  ";
+var scraped = "";
 
 
 console.log("Proc starting");
 //console.log(scraped);
-var py    = spawn('python', ['web_scraping.py', 'Pokemon']),
+var py    = spawn('python', ['web_scraping.py', 'happy']),
 data = [1,2,3,4,5,6,7,8,9],
 dataString = '';
 
@@ -59,12 +59,12 @@ dataString += data.toString();
 py.stdout.on('end', function(){
 console.log('TEXT: ',dataString);
 req.query({
-	"max_words": "200",
-	"font": "Tahoma",
+	"max_words": "16000",
+	"font": "Times New Roman",
 	"language": "en",
 	"colors": "%5B'%23375E97'%2C '%23FB6542'%2C '%23FFBB00'%2C '%233F681C'%5D",
 	"use_stopwords": "true",
-	"scaling": "0.5",
+	"scaling": "1.0",
 	"width": "800",
 	"height": "800",
 	"text": "This is a test. I repeat%2C this is a test. We are only testing the functionality of this api%2C nothing else. End of test."
@@ -79,16 +79,14 @@ req.headers({
 req.type("json");
 req.send({
 	"text": dataString,
-	"scale": 0.5,
+	"scale": 1.0,
 	"width": 800,
 	"height": 800,
 	"colors": [
-		"#375E97",
-		"#FB6542",
-		"#FFBB00",
-		"#3F681C"
+		"#0000cc",
+		"#cc0000",
 	],
-	"font": "Tahoma",
+	"font": "Times New Roman",
 	"use_stopwords": true,
 	"language": "en",
 	"uppercase": false
@@ -100,7 +98,7 @@ req.end(function (res) {
 
 	//image.src = res.body;
 	wordle = res.body;
-	//console.log(res.body);
+	console.log("Wordle Done");
 });
 
 });
