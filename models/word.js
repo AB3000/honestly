@@ -21,3 +21,6 @@ let wordSchema = new Schema({
         default: "", 
     }
 });
+
+var word = mongoose.model('word', wordSchema);
+module.exports = word;
