@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AB3000/honestly#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "unirest": "^0.6.0"
   }
 }

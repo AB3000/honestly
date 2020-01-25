@@ -1,17 +1,25 @@
 const http = require('http');
 var unirest = require("unirest");
 var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
+const express = require("express");
+const app = express();
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
+app.use('/', express.static(__dirname + '/'));
+
+app.get('/', function(req, res) {
+    res.sendFile('test.html', {root: __dirname })
+});
+/*
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   res.end('Hello World');
 });
-
-server.listen(port, hostname, () => {
+*/
+app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
@@ -54,8 +62,8 @@ req.send({
 
 req.end(function (res) {
 	if (res.error) throw new Error(res.error);
-	var image = new Image()
-	image.src = res.body;
-	
+	//var image = new Image()
+	//image.src = res.body;
+
 	console.log(res.body);
 });
