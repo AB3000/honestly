@@ -2,10 +2,8 @@
 import requests
 from bs4 import BeautifulSoup
 import numpy as np
+import re
 from googlesearch import search
-
-
-
 
 # test link
 link = 'https://en.wikipedia.org/wiki/Donald_Trump'
@@ -56,8 +54,13 @@ def scrape_article(url):
     ps.insert(0, h1)    # add the title
     content = [tag2md(p) for p in ps]
     
+    #removing special charcters and numbers. 
+    pat = re.compile(r'[^a-zA-Z ]+')
+    answer = re.sub(pat, '', str(content))
     # print(content)
-    return content 
+    #return content
+    print(answer)
+    return answer 
 
 
 def tag2md(tag):
@@ -75,6 +78,6 @@ def tag2md(tag):
 
 if __name__ == "__main__":
     # scrape_article(link)
-    combine_strings(get_top_results('dump'))
+    combine_strings(get_top_results('Trump'))
    
     
