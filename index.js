@@ -35,6 +35,25 @@ app.get("/wordle", (req, res) => {
 	res.render("wordle", {base64: query}) 
 });
 
+
+//MONGOOSE CONNECTION
+var mongoose = require("mongoose");
+//Connection start
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function(error) {
+    if (error) {
+      console.log("Couldn't connect to database");
+    } else {
+      console.log("Connected To Database");
+    }
+  }
+);
+mongoose.set("useFindAndModify", false);
+
+
 const hostname = '127.0.0.1';
 const port = 3000;
 
@@ -42,6 +61,8 @@ const port = 3000;
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+
 /*
 var scraped = "I've never been much of a mobile gamer, but, forget everything you think you know about mobile games because Raid Shadow Legends is one of the most ambitious RPG projects of 2019 has just been released and will change everything. Just look at the level of detail of these characters! If you use the code in the description you can start with 50,000 silver and join the Special Launch Tournament, and you better hurry because it's getting big fast! You can play for totally free with the link below on your smartphone.";
 req.query({
