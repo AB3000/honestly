@@ -8,7 +8,7 @@ var bodyParser = require("body-parser");
 app.set("view engine", "ejs"); 
 
 //Tell Express where we keep our index.ejs
-app.set("views", __dirname + "\\views"); 
+app.set("views", __dirname + "/views"); 
 
 //Use body-parser
 app.use(bodyParser.urlencoded({ extended: false })); 
