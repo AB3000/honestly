@@ -52,10 +52,10 @@ app.get("/wordle", (req, res) => {
 
 	//scrape --> call py function 
 
-	if(cont!= null){
+	if(cont != null){
 		//save to db
 		word.findOne({keyword: search}, "keyword contributions", (err, wordData) => {
-			if(wordData != ""){ //not empty 
+			if(wordData !== null){ //not empty 
 				wordData.contributions += " " + cont;
 				wordData.save();
 				 
@@ -71,7 +71,9 @@ app.get("/wordle", (req, res) => {
 
 	//retrieve from db 
 
+
 	//combine the results 
+
 
 	//create wordle 
 
