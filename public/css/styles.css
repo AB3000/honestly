@@ -3,10 +3,40 @@
     src: url("/public/fonts/GoudyBookletter1911-Regular.ttf");
 }
 
+
+:root {
+  --darkestBlue: #32648C;  
+}
+
+:root {
+  --darkBlue: #3E7Fb3;  
+}
+
+:root {
+  --lightBlue: #5C98C8;  
+}
+
+:root {
+  --lightGray: #eeeeee;
+}
+
+:root {
+  --gray: #C5C5C5;
+}
+
+:root {
+  --darkGray: #454545;
+}
+
+.title {
+	font-size: 500%;
+	color: var(--lightGray);
+}
+
 html,body{
     background-color: #632727;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     font-family: 'GoudyBookletter';
-    }
+}
