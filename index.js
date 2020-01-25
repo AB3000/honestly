@@ -17,7 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 var wordle = "asdf";
 
 //Instead of sending Hello World, we render index.ejs
-app.get("/", (req, res) => { res.render("wordle", {base64: wordle}) }); 
+app.get("/", (req, res) => { 
+	//res.render("wordle", {base64: wordle}) 
+	res.render("search");
+}); 
 
 //Allegedly we have to use the public folder in order to reference styles.css
 app.use(express.static(__dirname + '/public'));
@@ -26,6 +29,9 @@ app.get("/search", (req, res) => {
 	console.log("SEARCHED");
 }); 
 
+app.post("/wordle", (req, res) => {
+	console.log(req.query[searchQuery]);
+});
 
 const hostname = '127.0.0.1';
 const port = 3000;
