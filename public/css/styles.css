@@ -4,9 +4,12 @@
 }
 
 html,body{
-    background-color: #632727;
+    background-color: #000000;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     font-family: 'GoudyBookletter';
     }
+h1{
+    color: #f8f8f8;
+}

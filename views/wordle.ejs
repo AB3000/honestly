@@ -11,5 +11,11 @@
 	<body>
 		<h1>Hello Welcome to Wordle, see what the Internet is thinking!</h1>
 		<img id="wordle" src="<%=base64%>"/>
+		<h1>Search for something</h1>
+	<form action="/wordle" method="GET">
+	  <input type="text" name = "searchedQuery" id="searchedQuery" placeholder="search">
+	  <br><br>
+	  <input type="submit" value="Search">
+	</form>
 	</body>
 </html>
