@@ -26,14 +26,32 @@ app.get("/", (req, res) => {
 //Allegedly we have to use the public folder in order to reference styles.css
 app.use(express.static(__dirname + '/public'));
 
-app.get("/search", (req, res) => { 
-	console.log("SEARCHED");
-}); 
 
 app.get("/wordle", (req, res) => {
-	var query = req.query["searchedQuery"]
-	console.log(query);
-	res.render("wordle", {base64: query}) 
+	var search = req.query["searchedQuery"]
+	var contribution = req.query["contribution"]
+
+	// console.log("search is " + search  + " and cont is " + contribution);
+
+	//scrape --> call py function 
+
+	if(contribution != null){
+		//save to db
+		console.log("this is a contribution")
+	}
+
+	//retrieve from db 
+
+	//combine the results 
+
+	//create wordle 
+
+	
+
+	res.render("wordle", {base64: search, keyword: search}) 
+	//check if keyword 
+
+	
 });
 
 
