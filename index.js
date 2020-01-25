@@ -4,6 +4,8 @@ var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textT
 var express = require("express");
 var app = express(); 
 var bodyParser = require("body-parser"); 
+//MONGOOSE CONNECTION
+var mongoose = require("mongoose");
 
 //Set view engine to ejs
 app.set("view engine", "ejs"); 
@@ -34,6 +36,24 @@ app.get("/wordle", (req, res) => {
 	console.log(query);
 	res.render("wordle", {base64: query}) 
 });
+
+
+
+//Connection start
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function(error) {
+    if (error) {
+      console.log("Couldn't connect to database");
+    } else {
+      console.log("Connected To Database");
+    }
+  }
+);
+mongoose.set("useFindAndModify", false);
+
 
 const hostname = '127.0.0.1';
 const port = 3000;
