@@ -21,27 +21,20 @@ app.get("/", (req, res) => { res.render("wordle", {base64: wordle}) });
 
 //Allegedly we have to use the public folder in order to reference styles.css
 app.use(express.static(__dirname + '/public'));
+
+app.get("/search", (req, res) => { 
+	console.log("SEARCHED");
+}); 
+
+
 const hostname = '127.0.0.1';
 const port = 3000;
 
 
-//app.use('/', express.static(__dirname + '/'));
-/*
-app.get('/', function(req, res) {
-    //res.sendFile('test.html', {root: __dirname })
-    res.render(__dirname + "test.html", {base64:wordle});
-});*/
-/*
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
-*/
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
-
+/*
 var scraped = "I've never been much of a mobile gamer, but, forget everything you think you know about mobile games because Raid Shadow Legends is one of the most ambitious RPG projects of 2019 has just been released and will change everything. Just look at the level of detail of these characters! If you use the code in the description you can start with 50,000 silver and join the Special Launch Tournament, and you better hurry because it's getting big fast! You can play for totally free with the link below on your smartphone.";
 req.query({
 	"max_words": "200",
@@ -87,3 +80,4 @@ req.end(function (res) {
 	wordle = res.body;
 	//console.log(res.body);
 });
+*/
