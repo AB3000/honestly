@@ -4,7 +4,7 @@ var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textT
 var express = require("express");
 var app = express(); 
 var bodyParser = require("body-parser"); 
-var user = require("./models/word"); //reference to word schema
+var word = require("./models/word"); //reference to word schema
 
 //Set view engine to ejs
 app.set("view engine", "ejs"); 
@@ -14,6 +14,23 @@ app.set("views", __dirname + "/views");
 
 //Use body-parser
 app.use(bodyParser.urlencoded({ extended: false })); 
+
+//MONGOOSE CONNECTION
+var mongoose = require("mongoose");
+//Connection start
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function(error) {
+    if (error) {
+      console.log("Couldn't connect to database");
+    } else {
+      console.log("Connected To Database");
+    }
+  }
+);
+mongoose.set("useFindAndModify", false)
 
 var wordle = "asdf";
 
@@ -37,6 +54,22 @@ app.get("/wordle", (req, res) => {
 
 	if(contribution != null){
 		//save to db
+		console.log("search is " + search)
+		console.log(word.find())
+
+		word.findOne({keyword: search}, (err, wordData) => {
+			console.log(wordData);
+			if(wordData){
+				//add to contribution string
+				 
+			} else {
+
+			}
+			// removedFlag = 1;
+			// postData.description = "";
+			// postData.isRemoved = true;  
+			// postData.save();
+		});
 		console.log("this is a contribution")
 	}
 
@@ -55,22 +88,7 @@ app.get("/wordle", (req, res) => {
 });
 
 
-//MONGOOSE CONNECTION
-var mongoose = require("mongoose");
-//Connection start
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function(error) {
-    if (error) {
-      console.log("Couldn't connect to database");
-    } else {
-      console.log("Connected To Database");
-    }
-  }
-);
-mongoose.set("useFindAndModify", false);
+;
 
 
 const hostname = '127.0.0.1';
