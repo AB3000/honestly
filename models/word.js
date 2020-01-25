@@ -6,6 +6,18 @@ const mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 const Schema = mongoose.Schema;
 
+/**
+ * 
+ */
 let wordSchema = new Schema({
-
+    keyword: {//main keyword 
+       type: String,
+       required: true,
+       default: "", 
+    },
+    contributions: {
+        type: String, //Contribution String to keyword
+        required: false,
+        default: "", 
+    }
 });
