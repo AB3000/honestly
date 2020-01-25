@@ -25,7 +25,10 @@ app.use('/', searchRouter);
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/search', wordleRouter);
+var base64 = "testtesttest";
+console.log(base64);
+app.set('base64', base64);
+app.use('/wordle', wordleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
