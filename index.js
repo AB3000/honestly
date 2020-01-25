@@ -4,6 +4,7 @@ var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textT
 var express = require("express");
 var app = express(); 
 var bodyParser = require("body-parser"); 
+var word = require("./models/word"); //reference to word schema
 
 //Set view engine to ejs
 app.set("view engine", "ejs"); 
@@ -13,6 +14,23 @@ app.set("views", __dirname + "/views");
 
 //Use body-parser
 app.use(bodyParser.urlencoded({ extended: false })); 
+
+//MONGOOSE CONNECTION
+var mongoose = require("mongoose");
+//Connection start
+mongoose.Promise = global.Promise;
+mongoose.connect(
+  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/honestly?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function(error) {
+    if (error) {
+      console.log("Couldn't connect to database");
+    } else {
+      console.log("Connected To Database");
+    }
+  }
+);
+mongoose.set("useFindAndModify", false)
 
 var wordle = "asdf";
 
@@ -25,33 +43,60 @@ app.get("/", (req, res) => {
 //Allegedly we have to use the public folder in order to reference styles.css
 app.use(express.static(__dirname + '/public'));
 
-app.get("/search", (req, res) => { 
-	console.log("SEARCHED");
-}); 
 
 app.get("/wordle", (req, res) => {
-	var query = req.query["searchedQuery"]
-	console.log(query);
-	res.render("wordle", {base64: query}) 
+	var search = req.query["searchedQuery"]
+	var cont = req.query["contribution"]
+
+	// console.log("search is " + search  + " and cont is " + contribution);
+
+	//scrape --> call py function 
+
+	if(cont != null){
+		//save to db
+		word.findOne({keyword: search}, "keyword contributions", (err, wordData) => {
+			if(wordData !== null){ //not empty 
+				wordData.contributions += " " + cont;
+				wordData.save();
+				 
+			} else { //word does not exist in database
+				var newWord = new word({
+					keyword: search,
+					contributions: cont,
+				});
+				newWord.save();	
+			}
+		});
+	} else { //searched for a new object
+
+	}
+
+	var textRetrieved = "" 
+	//retrieve word from db, get contributions, add to textRetrieved  
+	word.findOne({keyword: search}, "contributions", (err, wordData) => {
+		if(wordData !== null){ //not empty 
+			textRetrieved = wordData.contributions; 
+			console.log(textRetrieved); 
+		} //else add nothing 
+	});
+
+
+
+
+	//combine the results 
+
+
+	//create wordle 
+
+	
+
+	res.render("wordle", {base64: search, keyword: search}) 
+
+	
 });
 
 
-//MONGOOSE CONNECTION
-var mongoose = require("mongoose");
-//Connection start
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function(error) {
-    if (error) {
-      console.log("Couldn't connect to database");
-    } else {
-      console.log("Connected To Database");
-    }
-  }
-);
-mongoose.set("useFindAndModify", false);
+;
 
 
 const hostname = '127.0.0.1';
