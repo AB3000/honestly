@@ -29,8 +29,10 @@ app.get("/search", (req, res) => {
 	console.log("SEARCHED");
 }); 
 
-app.post("/wordle", (req, res) => {
-	console.log(req.query[searchQuery]);
+app.get("/wordle", (req, res) => {
+	var query = req.query["searchedQuery"]
+	console.log(query);
+	res.render("wordle", {base64: query}) 
 });
 
 const hostname = '127.0.0.1';
