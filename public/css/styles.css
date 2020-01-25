@@ -72,3 +72,34 @@ html,body{
     line-height: 40px;
     width: 20%;
 }
+
+.keyword {
+	font-size: 70px;
+	color: var(--white);
+    margin: auto;
+	width: 50%;
+	text-align: center;
+}
+
+.search-again {
+	margin: auto;
+	width: 50%;
+	height: 40px;
+	float: center;
+}
+
+.contribution {
+	margin: auto;
+	width: 50%;
+	height: 40px;
+	float: center;
+}
+
+input[type=text] {
+	padding: 12px 20px;
+	border: 2px solid var(--lightGray);
+	background-color: var(--darkGray);
+	border-radius: 20px;
+	width: 100%;
+	height: 100%;
+}

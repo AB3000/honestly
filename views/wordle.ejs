@@ -9,17 +9,24 @@
 	</script>
 
 	<body>
-
-		<form action="/wordle" method="GET">
-			<input class="search-input" type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
-		</form>
-		<h1>
-		<img id="wordle" src="<%=base64%>"/>
-		<form action="/wordle" method="GET">
-			<input type="text" name = "contribution" id="contribution" placeholder="search">
-			<br><br>
-			<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
-			<input type="submit" value="Add Contribution">
-		</form>
+		<div>
+			<div class="search-again">
+				<form action="/wordle" method="GET">
+					<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
+				</form>
+			</div>
+			<br>
+			<br>
+			<div class="keyword"><%=keyword%></h1>
+			<img id="wordle" src="<%=base64%>"/>
+			<div class="contribution">
+				<form action="/wordle" method="GET">
+					<input type="text" name = "contribution" id="contribution" placeholder="search">
+					<br><br>
+					<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
+					<input type="submit" value="Add Contribution">
+				</form>
+			</div>
+		</div>
 	</body>
 </html>
