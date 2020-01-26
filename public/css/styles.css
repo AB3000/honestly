@@ -39,7 +39,6 @@
 .left {
   top: 0;
   overflow: hidden;
-  background-color: var(--darkBlue);
   position: fixed;
   height: 100%;
   width: 30%;
@@ -67,11 +66,9 @@ html,body{
     overflow-x: hidden;
     margin: 0;
 }
+
 .h1{
     color: var(--white);
-    /* white-space: nowrap;
-    display: inline; */
-
 }
 
 .title{
@@ -81,13 +78,13 @@ html,body{
 	user-select: none;
 }
 
-.submit-btn{
-    border-radius: 10%;
-    background-color: var(--gold);
-    background-repeat: no-repeat;
+/*.submit-btn{
+    border-radius: ;
+    font-size: 20px;
+    background-color: var(--lightGray);
     size: 100px 30px;
-    margin: -20px -50px;
-}
+}*/
+
 .center {
 	position: absolute;
     top: 50%;
@@ -109,6 +106,7 @@ html,body{
 	padding-top: 15%;
 	font-size: 70px;
 	color: var(--white);
+	line-height: 75px;
  	margin: auto;
 	width: 80%;
  	text-align: center;
@@ -135,7 +133,21 @@ html,body{
 	padding-left: 12px;
 }
 
-input[type=text], input[text=textarea] {
+.submit-btn {
+	float: center;
+	margin-top: 10px;
+	padding: 12px 12px;
+	border: 2px solid var(--darkGray);
+	background-color: var(--lightGray);
+	text-align: left;
+	border-radius: 20px;
+	font-family: 'GoudyBookletter';
+	font-size: 20px;
+	color: var(--white);
+}
+
+input[type=text], textarea {
+	resize: none;
 	padding: 12px 20px;
 	border: 2px solid var(--lightGray);
 	background-color: var(--darkGray);
