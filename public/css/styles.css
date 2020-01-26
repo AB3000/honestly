@@ -70,6 +70,7 @@ html,body{
     background-color: var(--gold);
     background-repeat: no-repeat;
     size: 100px 30px;
+    margin: -20px -50px;
 }
 .center {
 	position: absolute;
