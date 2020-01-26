@@ -42,6 +42,8 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'GoudyBookletter';
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .h1{
     color: var(--white);
