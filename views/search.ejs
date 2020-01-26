@@ -11,12 +11,18 @@
 			<input class="search-input" type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
 		</form>
 	</div>
-	<div id="loader"></div>
+	<!-- <div id="loader"></div> -->
+
+	<div id="preloader">
+	  <div id="loader"></div>
+	</div>
 
 	<script>
 		function showLoader() {
-		  document.getElementById("loader").style.display = "block";
+		  document.getElementById("preloader").style.display = "block";
 		  document.getElementById("page").style.display = "none";
 		}
 	</script>
 </body>
+
+
