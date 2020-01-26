@@ -106,31 +106,36 @@ html,body{
 }
 
 .keyword {
+	padding-top: 15%;
 	font-size: 70px;
 	color: var(--white);
-  margin: auto;
-	/* width: 50%; */
-  text-align: center;
-  display: inline;
-  /* width: 50%; */
-  margin: 0 auto;
+ 	margin: auto;
+	width: 80%;
+ 	text-align: center;
 }
 
 .search-again {
+	padding-top: 15%;
 	margin: auto;
-	width: 50%;
+	width: 80%;
 	height: 40px;
 	float: center;
 }
 
 .contribution {
+	padding-top: 10%;
 	margin: auto;
-	width: 50%;
-	height: 40px;
+	width: 80%;
+	height: 50%;
 	float: center;
 }
 
-input[type=text] {
+#contribution {
+	background-image: none;
+	padding-left: 12px;
+}
+
+input[type=text], input[text=textarea] {
 	padding: 12px 20px;
 	border: 2px solid var(--lightGray);
 	background-color: var(--darkGray);
@@ -149,12 +154,14 @@ input[type=text] {
 }
 
 #wordleImage {
-	position: relative;
+	/*position: relative;*/
+	overflow: hidden;
 }
 
 #wordle {
-	width: 100%;
-    margin: auto;
+    max-width:100%;
+	max-height:100%;
+	object-fit: cover;
 }
 
 #loader {

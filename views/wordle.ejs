@@ -11,20 +11,17 @@
 	<body>
 		<div id="page">
 			<div class="left">
-				<div class="center">
+				<div>
 					<div class="search-again">
 						<form action="/wordle" method="GET" onsubmit="showLoader()">
 							<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
 						</form>
 					</div>
-					<br>
-					<br>
 					<div class="keyword"><%=keyword%></div>
 
 					<div class="contribution">
 						<form action="/wordle" method="GET" onsubmit="showLoader()">
-							<input type="text" name = "contribution" id="contribution" placeholder="add a contribution">
-							<br><br>
+							<textarea name="contribution" id="contribution" placeholder="add a contribution"></textarea>
 							<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
 							<!--<input class="submit-btn" type="submit" value="Add Contribution">-->				
 						</form>
