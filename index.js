@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //MONGOOSE CONNECTION
 
 var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
+var activation = require("./models/activation");
 //Connection start
 /*
 mongoose.Promise = global.Promise;
@@ -106,7 +108,7 @@ app.get("/wordle", (req, res) => {
 	dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	//console.log('TEXT: ',dataString);
+	console.log('TEXT: ',dataString);
 	dataString+=" "+textRetrieved;
 	wordleReq.query({
 		"max_words": "16000",
@@ -159,6 +161,7 @@ app.get("/wordle", (req, res) => {
 
 //Connection start
 mongoose.Promise = global.Promise;
+console.log("Mongoose Connect: ")
 mongoose.connect(
   "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/test?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -176,10 +179,11 @@ mongoose.set("useFindAndModify", false);
 const hostname = '127.0.0.1';
 //const port = process.env.PORT;
 //console.log(process.env.PORT);
-
+console.log("Starting port");
 app.listen(process.env.PORT || 3000, function(){
 	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
+  console.log("Spawning Child");
 var spawn = require('child_process').spawn,
     py    = spawn('python', ['web_scraping.py']),
     data = [1,2,3,4,5,6,7,8,9],
