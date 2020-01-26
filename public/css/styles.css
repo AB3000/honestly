@@ -36,20 +36,40 @@
   --gold: #C28E0E;
 }
 
+.left {
+  top: 0;
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 30%;
+  text-align: right;
+}
+
+.right {
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+  width: 70%;
+  margin-left: 30%;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 100%;
+}
+
 html,body{
     /*background-color: var(--darkGray);*/
     background-image: radial-gradient(var(--darkGray), var(--blackGray));
-    background-size: cover;
+    /*background-size: cover;*/
     background-repeat: no-repeat;
     font-family: 'GoudyBookletter';
     overflow-y: hidden;
     overflow-x: hidden;
+    margin: 0;
 }
+
 .h1{
     color: var(--white);
-    /* white-space: nowrap;
-    display: inline; */
-
 }
 
 .title{
@@ -57,30 +77,15 @@ html,body{
 	color: var(--white);
 	padding-bottom: 20px;
 	user-select: none;
-    /*height: 40px;
-    border-radius: 40px;
-    padding: 10px;*/
 }
 
-/*.search-btn{
-    color: #000000;
-    float: bottom;
-    width:80px;
-    height:40px;
-    border-radius: 20%;
-    background: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}*/
-.submit-btn{
-    border-radius: 10%;
-    background-color: var(--gold);
-    background-repeat: no-repeat;
+/*.submit-btn{
+    border-radius: ;
+    font-size: 20px;
+    background-color: var(--lightGray);
     size: 100px 30px;
-    margin: -20px -50px;
-}
+}*/
+
 .center {
 	position: absolute;
     top: 50%;
@@ -99,31 +104,57 @@ html,body{
 }
 
 .keyword {
+	padding-top: 15%;
 	font-size: 70px;
 	color: var(--white);
-  width: 100%;
-  text-align: center;
-  white-space: nowrap;
-  /* display: inline; */
-
-  margin: 0 auto;
+	line-height: 75px;
+ 	margin: auto;
+	width: 80%;
+ 	text-align: center;
 }
 
 .search-again {
+	padding-top: 15%;
 	margin: auto;
-	width: 50%;
+	width: 80%;
 	height: 40px;
 	float: center;
 }
 
 .contribution {
+	padding-top: 10%;
 	margin: auto;
-	width: 50%;
-	height: 40px;
+	width: 80%;
+	height: 50%;
 	float: center;
 }
 
-input[type=text] {
+#contribution {
+	background-image: none;
+	padding-left: 12px;
+}
+
+.submit-btn {
+	float: center;
+	margin-top: 10px;
+	padding: 12px 12px;
+	background-color: var(--gray);
+	text-align: left;
+	border-radius: 20px;
+	border-width: 0px;
+	font-family: 'GoudyBookletter';
+	font-size: 20px;
+	color: var(--lightGray);
+	transition-duration: .5s;
+}
+
+.submit-btn:hover {
+	background-color: #444444;
+	transition-duration: .5s;
+}
+
+input[type=text], textarea {
+	resize: none;
 	padding: 12px 20px;
 	border: 2px solid var(--lightGray);
 	background-color: var(--darkGray);
@@ -142,19 +173,20 @@ input[type=text] {
 }
 
 #wordleImage {
-	position: relative;
-	height: 450;
-	width: 450;
+	/*position: relative;*/
+	overflow: hidden;
+	text-align: center;
+	height: 100%;
 }
 
 #wordle {
+    max-width:100%;
+	max-height:100%;
+	object-fit: cover;
 	position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    z-index: -1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #loader {
