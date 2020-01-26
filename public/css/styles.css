@@ -5,19 +5,19 @@
 
 
 :root {
-  --black: #000000;  
+  --black: #000000;
 }
 
 :root {
-  --blackGray: #111111;  
+  --blackGray: #111111;
 }
 
 :root {
-  --darkGray: #222222;  
+  --darkGray: #222222;
 }
 
 :root {
-  --gray: #303030;  
+  --gray: #303030;
 }
 
 :root {
@@ -47,7 +47,7 @@ html,body{
 	font-size: 100px;
 	color: var(--white);
 	padding-bottom: 20px;
-	user-select: none; 
+	user-select: none;
     /*height: 40px;
     border-radius: 40px;
     padding: 10px;*/
@@ -63,9 +63,15 @@ html,body{
     display: flex;
     justify-content: center;
     align-items: center;
-    
-}*/
 
+}*/
+.submit-btn{
+    border-radius: 10%;
+    background-color: var(--gold);
+    background-repeat: no-repeat;
+    size: 100px 30px;
+    margin: -20px -50px;
+}
 .center {
 	position: absolute;
     top: 50%;
