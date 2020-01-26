@@ -1,12 +1,16 @@
 const http = require('http');
 var unirest = require("unirest");
 var wordleReq = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
+// var wordleReq = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud?max_words=1000");
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var sys   = require('util');
 var spawn = require('child_process').spawn;
 var word = require("./models/word"); //reference to word schema
+
+
+
 
 //Set view engine to ejs
 app.set("view engine", "ejs");
@@ -110,7 +114,7 @@ app.get("/wordle", (req, res) => {
 	dataString+=" "+textRetrieved;
 	wordleReq.query({
 		"max_words": "16000",
-		"font": "Times New Roman",
+		"font_pathstring": "public/fonts/GoudyBookletter1911-Regular.ttf",
 		"language": "en",
 		"colors": "%5B'%23375E97'%2C '%23FB6542'%2C '%23FFBB00'%2C '%233F681C'%5D",
 		"use_stopwords": "true",
@@ -135,7 +139,7 @@ app.get("/wordle", (req, res) => {
 		"colors": [
 			"#ffffff",
 		],
-		"font": "Times New Roman",
+		"font_pathstring": "public/fonts/GoudyBookletter1911-Regular.ttf",
 		"use_stopwords": true,
 		"language": "en",
 		"uppercase": false
