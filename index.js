@@ -131,12 +131,23 @@ app.get("/wordle", (req, res) => {
 	});
 
 	wordleReq.end(function (wordleRes) {
-		if (wordleRes.error) throw new Error(wordleRes.error);
+		// if (wordleRes.error) throw new Error(wordleRes.error);
+		try{
 		wordle = wordleRes.body;
 		//res.render("wordle", {base64: wordle, keyword: search})
 		console.log("Wordle Done");
 		hasLoaded = true;
 		res.render("wordle", {base64: wordle, keyword: search});
+		}
+		catch (error){
+			wordle = wordleReq.body;
+			res.render("wordle", {base64: wordle, keyword: search});
+		}
+		// wordle = wordleRes.body;
+		// //res.render("wordle", {base64: wordle, keyword: search})
+		// console.log("Wordle Done");
+		// hasLoaded = true;
+		// res.render("wordle", {base64: wordle, keyword: search});
 	});
 
 	});
