@@ -92,14 +92,16 @@ app.get("/wordle", (req, res) => {
 
 	py.stdout.on('data', function(data){
 	dataString += data.toString();
+
 	});
 	py.stdout.on('end', function(){
 	//console.log('TEXT: ',dataString);
 	dataString+=" "+textRetrieved;
+
 	});
 	py.stdin.write(JSON.stringify(data));
 	py.stdin.end();
-	res.write("wordle", {base64: wordle, keyword: search});
+	res.write("wordle", {keyword: search});
 });
 
 //Connection start

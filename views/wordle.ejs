@@ -1,11 +1,12 @@
 <html>
 	<link href="../css/styles.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="./wordcloud2.js"></script>
 	<head>
 	</head>
 
 	<script type="text/javascript">
-		//document.getElementById("wordle").src = "<%=base64%>";
-		console.log("<%=base64%>");
+		
+		
 	</script>
 
 	<body onload="loadWordle()" style="margin:0;">
@@ -20,7 +21,7 @@
 			<h1 class="keyword"><%=keyword%></h1>
 			
 			<div id="wordleImage">
-				<img id="wordle" src="<%=base64%>"/>
+				
 			</div>
 
 			<div class="contribution">
@@ -37,10 +38,16 @@
 		</div>
 
 		<script>
+			// function showLoader() {
+			//   document.getElementById("preloader").style.display = "block";
+			//   document.getElementById("page").style.display = "none";
+			// }
+
 			function showLoader() {
-			  document.getElementById("preloader").style.display = "block";
-			  document.getElementById("page").style.display = "none";
+				WordCloud(document.getElementById('my_canvas'), { list: list } );
+				console.log("here");
 			}
+
 		</script>
 	</body>
 </html>
