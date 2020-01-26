@@ -163,12 +163,12 @@ mongoose.set("useFindAndModify", false);
 
 
 const hostname = '127.0.0.1';
-const port = 3000;
+//const port = process.env.PORT;
+//console.log(process.env.PORT);
 
-
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(process.env.PORT || 3000, function(){
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 var spawn = require('child_process').spawn,
     py    = spawn('python', ['web_scraping.py']),
     data = [1,2,3,4,5,6,7,8,9],
