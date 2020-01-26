@@ -101,11 +101,11 @@ html,body{
 .keyword {
 	font-size: 70px;
 	color: var(--white);
-  margin: auto;
-	/* width: 50%; */
+  width: 100%;
   text-align: center;
-  display: inline;
-  /* width: 50%; */
+  white-space: nowrap;
+  /* display: inline; */
+
   margin: 0 auto;
 }
 
