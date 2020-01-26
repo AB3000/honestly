@@ -59,7 +59,12 @@ html,body{
     align-items: center;
     
 }*/
-
+.submit-btn{
+    border-radius: 10%;
+    background-color: var(--gold);
+    background-repeat: no-repeat;
+    size: 100px 30px;
+}
 .center {
 	position: absolute;
     top: 50%;
