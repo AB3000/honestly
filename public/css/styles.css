@@ -42,9 +42,14 @@ html,body{
     /*background-size: cover;*/
     background-repeat: no-repeat;
     font-family: 'GoudyBookletter';
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .h1{
     color: var(--white);
+    /* white-space: nowrap;
+    display: inline; */
+
 }
 
 .title{
@@ -81,9 +86,12 @@ html,body{
 .keyword {
 	font-size: 70px;
 	color: var(--white);
-    margin: auto;
-	width: 50%;
-	text-align: center;
+  margin: auto;
+	/* width: 50%; */
+  text-align: center;
+  display: inline;
+  /* width: 50%; */
+  margin: 0 auto;
 }
 
 .search-again {
@@ -119,7 +127,19 @@ input[type=text] {
 }
 
 #wordleImage {
-	
+	position: relative;
+	height: 450;
+	width: 450;
+}
+
+#wordle {
+	position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    z-index: -1;
 }
 
 #loader {

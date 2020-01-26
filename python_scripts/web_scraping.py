@@ -30,7 +30,6 @@ def get_top_results(query):
 
 def combine_strings(links):
     articles = ""
-    i = 0
     for link in links:
            articles+=((scrape_article(link)))
     articles = cutString(articles)
@@ -75,11 +74,18 @@ def scrape_article(url):
     ps = root.find_all(['h2', 'h3', 'h4', 'h5', 'p', 'pre'])
     ps.insert(0, h1)    # add the title
     content = [tag2md(p) for p in ps]
-    strings = str(content)
+    strings = str(content).lower()
     #removing special charcters and numbers.
     # strings = preg_replace( '/(\r\n)+|\r+|\n+|\t+/i', ' ', strings )
     strings = strings.replace("\\r","")
     strings = strings.replace("\\n","")
+    # index = len(searchword)
+    # rmove = ""
+    # for  in index:
+    #     rmove="*"+rmove
+    listquery = searchword.split()
+    for w in listquery:
+        strings = strings.replace(w, "*****")
     filter = ''.join([chr(i) for i in range(1, 32)])
     strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^A-Za-za-z ]+')
