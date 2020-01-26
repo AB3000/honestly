@@ -1,4 +1,5 @@
 <html>
+	<link href="../css/styles.css" rel="stylesheet" type="text/css">
 	<head>
 	</head>
 
@@ -8,7 +9,13 @@
 	</script>
 
 	<body>
-		<h1>TEST</h1>
+		<h1>Hello Welcome to Wordle, see what the Internet is thinking!</h1>
 		<img id="wordle" src="<%=base64%>"/>
+		<form action="/wordle" method="GET">
+			<input type="text" name = "contribution" id="contribution" placeholder="search">
+			<br><br>
+			<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
+			<input type="submit" value="Add Contribution">
+		</form>
 	</body>
 </html>
