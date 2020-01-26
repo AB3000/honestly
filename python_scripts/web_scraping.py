@@ -1,22 +1,26 @@
 # importing the necessary packages
 import requests
 from bs4 import BeautifulSoup
-import numpy as np
+import json, numpy as np
 import re
+import sys
 from googlesearch import search
+import nltk 
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 # test link
 link = 'https://en.wikipedia.org/wiki/Donald_Trump'
 
-
+searchword = ""
 def get_top_results(query):
     my_results_list = []
     for i in search(query,        # The query you want to run
                     tld = 'com',  # The top level domain
                     lang = 'en',  # The language
-                    num = 15,     # Number of results per page
+                    num = 10,     # Number of results per page
                     start = 0,    # First result to retrieve
-                    stop = 15,  # Last result to retrieve
+                    stop = 10,  # Last result to retrieve
                     pause = 3.0,  # Lapse between HTTP requests
                 ):
                 my_results_list.append(i)
@@ -26,9 +30,23 @@ def get_top_results(query):
 
 def combine_strings(links):
     articles = ""
+    i = 0
     for link in links:
            articles+=((scrape_article(link)))
+    articles = cutString(articles)
     print(articles)
+
+def cutString(fullText):
+    stop = stopwords.words('english')
+    fullText = word_tokenize(fullText.lower())
+    fullText = [w for w in fullText if not w in stop]
+    # try: 
+    #     while True:
+    #         fullText.remove(searchword)
+    # except ValueError:
+    #     pass
+    listToStr = ' '.join([str(elem) for elem in fullText]) 
+    return listToStr
 
 def scrape_article(url):
     res = requests.get(url)
@@ -51,15 +69,20 @@ def scrape_article(url):
         root = root.parent
 
     # getting all meaningful paragraphs/content
-    ps = root.find_all(['h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre'])
+    ps = root.find_all(['h2', 'h3', 'h4', 'h5', 'p', 'pre'])
     ps.insert(0, h1)    # add the title
     content = [tag2md(p) for p in ps]
     strings = str(content)
     #removing special charcters and numbers.
+    # strings = preg_replace( '/(\r\n)+|\r+|\n+|\t+/i', ' ', strings )
+    strings = strings.replace("\\r","")
+    strings = strings.replace("\\n","")
+    strings = strings.replace("happy","")
     filter = ''.join([chr(i) for i in range(1, 32)])
     strings.translate(str.maketrans('', '', filter))
-    pat = re.compile(r'[^a-zA-Z ]+')
+    pat = re.compile(r'[^A-Za-za-z ]+')
     answer = re.sub(pat, '', strings)
+    #answer = re.sub('[!@#$À-ÿ]', '', strings)
     # print(content)
     #return content
     ##print(answer)
@@ -78,9 +101,19 @@ def tag2md(tag):
     elif tag.name == 'pre':
         return f'```\n{tag.text}\n```'
 
+def printResult(query):
+    
+    combine_strings(get_top_results(query))
+    print("Hi there")
+    #sys.stdout.flush()
 
 if __name__ == "__main__":
-    # scrape_article(link)
-    combine_strings(get_top_results('Trump'))
-   
+    # nltk.download('stopwords')
+    # nltk.download('punkt')
+    # nltk.download('words')
+    # nltk.download('wordnet')
+    query = str(sys.argv[1])
+    searchword = query
+    combine_strings(get_top_results(query))
+    # printResult("Pokemon")
     

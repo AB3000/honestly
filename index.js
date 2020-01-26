@@ -1,12 +1,11 @@
 const http = require('http');
 var unirest = require("unirest");
-var req = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
+var wordleReq = unirest("POST", "https://textvis-word-cloud-v1.p.rapidapi.com/v1/textToCloud");
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
-
-//MONGOOSE CONNECTION
-var mongoose = require("mongoose");
+var sys   = require('util');
+var spawn = require('child_process').spawn;
 var word = require("./models/word"); //reference to word schema
 
 //Set view engine to ejs
@@ -79,7 +78,7 @@ app.get("/wordle", (req, res) => {
 	word.findOne({keyword: search}, "contributions", (err, wordData) => {
 		if(wordData !== null){ //not empty
 			textRetrieved = wordData.contributions;
-			console.log(textRetrieved);
+			//console.log(textRetrieved);
 		} //else add nothing
 	});
 
@@ -91,10 +90,72 @@ app.get("/wordle", (req, res) => {
 
 	//create wordle
 
+	//create wordle
+	var scraped = "";
 
 
-	res.render("wordle", {base64: search, keyword: search})
+	console.log("Web Scraping starts");
+	//console.log(scraped);
+	var py    = spawn('python', ['python_scripts/web_scraping.py', search]),
+	data = [1,2,3,4,5,6,7,8,9],
+	dataString = '';
 
+	py.stdout.on('data', function(data){
+	dataString += data.toString();
+	});
+	py.stdout.on('end', function(){
+	//console.log('TEXT: ',dataString);
+	dataString+=" "+textRetrieved;
+	wordleReq.query({
+		"max_words": "16000",
+		"font": "Times New Roman",
+		"language": "en",
+		"colors": "%5B'%23375E97'%2C '%23FB6542'%2C '%23FFBB00'%2C '%233F681C'%5D",
+		"use_stopwords": "true",
+		"scaling": "1.0",
+		"width": "800",
+		"height": "800",
+		"text": "This is a test. I repeat%2C this is a test. We are only testing the functionality of this api%2C nothing else. End of test."
+	});
+	wordleReq.headers({
+		"x-rapidapi-host": "textvis-word-cloud-v1.p.rapidapi.com",
+		"x-rapidapi-key": "43a21f4f50msh8b405ea8a73566ap12a98ajsn7413018624fc",
+		"x-api-key": "qLn10OtYwY8MILjfYAIH11rx6yVWaGMOUNh0NZQh",
+		"content-type": "application/json",
+		"accept": "application/json"
+	});
+	wordleReq.type("json");
+	wordleReq.send({
+		"text": dataString,
+		"scale": 1.0,
+		"width": 800,
+		"height": 800,
+		"colors": [
+			"#0000cc",
+			"#cc0000",
+		],
+		"font": "Times New Roman",
+		"use_stopwords": true,
+		"language": "en",
+		"uppercase": false
+	});
+
+	wordleReq.end(function (wordleRes) {
+		if (wordleRes.error) throw new Error(wordleRes.error);
+		//var image = new Image()
+
+		//image.src = res.body;
+		wordle = wordleRes.body;
+		console.log("Wordle Done");
+	});
+
+	});
+	// py.stdin.write(JSON.stringify(data));
+	// py.stdin.end();
+
+
+
+	res.render("wordle", {base64: wordle, keyword: search})
 
 });
 
@@ -173,9 +234,6 @@ req.send({
 	"uppercase": false
 });
 
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-	//var image = new Image()
 
 	//image.src = res.body;
 	wordle = res.body;
