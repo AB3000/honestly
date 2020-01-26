@@ -23,7 +23,7 @@
     "ejs-lint": "^1.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.8.9",
-    "requests": "^0.3.0",
-    "unirest": "^0.6.0"
+    "wordcloud": "^1.1.1",
+    "requests": "^0.3.0"
   }
 }

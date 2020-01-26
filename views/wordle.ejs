@@ -1,26 +1,33 @@
 <html>
-	<link href="../css/styles.css" rel="stylesheet" type="text/css">
-	<head>
+	<link href="../css/styles.css" rel="stylesheet" type="text/css" />
+	<script src="https://www.amcharts.com/lib/4/core.js"></script>
+	<script type="text/javascript" src="wordcloud2.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+	<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	<head> 
+	  <style>
+		  #my_canvas {
+			width:100%;
+			height: 500px;
+		  }
+	  </style>
 	</head>
-
-	<script type="text/javascript">
-		//document.getElementById("wordle").src = "<%=base64%>";
-		console.log("<%=base64%>");
-	</script>
 
 	<body>
 		<div id="page">
 			<div class="left">
 				<div>
 					<div class="search-again">
-						<form action="/wordle" method="GET" onsubmit="showLoader()">
+						<form action="/wordle" method="GET"  onsubmit="showLoader()">
 							<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search" autocomplete="off">
 						</form>
 					</div>
 					<div class="keyword"><%=keyword%></div>
 
 					<div class="contribution">
-						<form action="/wordle" method="GET" onsubmit="showLoader()">
+						<form action="/wordle" method="GET"  onsubmit="showLoader()">
 							<textarea name="contribution" id="contribution" placeholder="add a contribution"></textarea>
 							<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
 							<input class="submit-btn" type="submit" value="Add Contribution">				
@@ -31,19 +38,41 @@
 
 			<div class="right">
 				<div id="wordleImage">
-					<img id="wordle" src="<%=base64%>"/>
 				</div>
 			</div>
 		</div>
 		<div id="preloader">
 		  <div id="loader"></div>
 		</div>
+		    <script  type="text/javascript">
+				am4core.ready(function() {
+		 
+					 // Themes begin
+					 am4core.useTheme(am4themes_material);
+					 am4core.useTheme(am4themes_animated);
+					 
+					 // Themes end
+		 
+					 var chart = am4core.create("wordleImage", am4plugins_wordCloud.WordCloud);
+					 var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+		 
+					 series.accuracy = 4;
+					 series.step = 15;
+					 series.rotationThreshold = 0.7;
+					 series.maxCount = 60;
+					 series.minWordLength = 2;
+					 series.labels.template.tooltipText = "{word}: {value}";
+					 series.fontFamily = "GoudyBookletter";
+					 series.maxFontSize = am4core.percent(30);
+					 series.text = "<%=ds%>";
+					 series.labels.template.fill = am4core.color("#FFFFFF");
+					 console.log("series text  is " + series.text);
+			   });
 
-		<script>
-			function showLoader() {
-			  document.getElementById("preloader").style.display = "block";
-			  document.getElementById("page").style.display = "none";
-			}
+				function showLoader() {
+				  document.getElementById("preloader").style.display = "block";
+				  document.getElementById("page").style.display = "none";
+				}
 		</script>
 	</body>
 </html>
