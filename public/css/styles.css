@@ -42,9 +42,14 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'GoudyBookletter';
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 .h1{
     color: var(--white);
+    /* white-space: nowrap;
+    display: inline; */
+
 }
 
 .title{
@@ -96,9 +101,12 @@ html,body{
 .keyword {
 	font-size: 70px;
 	color: var(--white);
-    margin: auto;
-	width: 50%;
-	text-align: center;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  /* display: inline; */
+
+  margin: 0 auto;
 }
 
 .search-again {
