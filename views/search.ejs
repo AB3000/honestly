@@ -11,12 +11,24 @@
 			<input class="search-input" type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
 		</form>
 	</div>
-	<div id="loader"></div>
+	<!-- <div id="loader"></div> -->
+
+	<!-- Credit: https://dribbble.com/shots/5092176-Newton-Loader -->
+	<div id="gooey" class="gooey">
+	  <span class="dot"></span>
+	  <div class="dots">
+	    <span></span>
+	    <span></span>
+	    <span></span>
+	  </div>
+	</div>
 
 	<script>
 		function showLoader() {
-		  document.getElementById("loader").style.display = "block";
+		  document.getElementById("gooey").style.display = "block";
 		  document.getElementById("page").style.display = "none";
 		}
 	</script>
 </body>
+
+
