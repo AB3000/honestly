@@ -1,92 +1,73 @@
 <html>
-  <link href="../css/styles.css" rel="stylesheet" type="text/css" />
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script type="text/javascript" src="wordcloud2.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
-  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-  <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-  <head> 
-	<style>
-		#my_canvas {
-		  width:100%;
-		  height: 500px;
-		}
-	</style>
-  </head>
+	<link href="../css/styles.css" rel="stylesheet" type="text/css" />
+	<script src="https://www.amcharts.com/lib/4/core.js"></script>
+	<script type="text/javascript" src="wordcloud2.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+	<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+	<head> 
+	  <style>
+		  #my_canvas {
+			width:100%;
+			height: 500px;
+		  }
+	  </style>
+	</head>
 
-  <script type="text/javascript">
-    console.log("Wordle loaded");
-  </script>
+	<body>
+		<div id="page">
+			<div class="left">
+				<div>
+					<div class="search-again">
+						<form action="/wordle" method="GET" >
+							<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search" autocomplete="off">
+						</form>
+					</div>
+					<div class="keyword"><%=keyword%></div>
 
-  <body style="margin:0;">
-    <%=console.log("hell yeah");%>
-    <div id="page" class="center">
-      <div class="search-again">
-        <form action="/wordle" method="GET">
-          <input
-            type="text"
-            name="searchedQuery"
-            id="searchedQuery"
-            placeholder="search"
-          />
-        </form>
-      </div>
-      <br />
-      <br />
-      <h1 class="keyword"><%=keyword%></h1>
+					<div class="contribution">
+						<form action="/wordle" method="GET">
+							<textarea name="contribution" id="contribution" placeholder="add a contribution"></textarea>
+							<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
+							<input class="submit-btn" type="submit" value="Add Contribution">				
+						</form>
+					</div>
+				</div>
+			</div>
 
-      <div id="my_canvas">
-      </div>
-
-      <div class="contribution">
-        <form action="/wordle" method="GET">
-          <input
-            type="text"
-            name="contribution"
-            id="contribution"
-            placeholder="add a contribution"
-          />
-          <br /><br />
-          <input
-            type="hidden"
-            name="searchedQuery"
-            id="searchedQuery"
-            value="<%= keyword%>"
-          />
-          <!--<input class="submit-btn" type="submit" value="Add Contribution">-->
-        </form>
-      </div>
-    </div>
-    <div id="preloader">
-      <div id="loader"></div>
-    </div>
-
-    <script  type="text/javascript">
-       am4core.ready(function() {
-
-			// Themes begin
-			am4core.useTheme(am4themes_material);
-			am4core.useTheme(am4themes_animated);
-			
-			// Themes end
-
-			var chart = am4core.create("my_canvas", am4plugins_wordCloud.WordCloud);
-			var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-
-			series.accuracy = 4;
-			series.step = 15;
-			series.rotationThreshold = 0.7;
-			series.maxCount = 60;
-			series.minWordLength = 2;
-			series.labels.template.tooltipText = "{word}: {value}";
-			series.fontFamily = "Times New Roman";
-			series.maxFontSize = am4core.percent(30);
-			series.text = "<%=ds%>";
-			series.labels.template.fill = am4core.color("#9F6BA0");
-			// series.text = "blah bad good blah good hey";
-			console.log("series text  is " + series.text);
-	  });
-    </script>
-  </body>
+			<div class="right">
+				<div id="wordleImage">
+				</div>
+			</div>
+		</div>
+		<div id="preloader">
+		  <div id="loader"></div>
+		</div>
+		    <script  type="text/javascript">
+				am4core.ready(function() {
+		 
+					 // Themes begin
+					 am4core.useTheme(am4themes_material);
+					 am4core.useTheme(am4themes_animated);
+					 
+					 // Themes end
+		 
+					 var chart = am4core.create("wordleImage", am4plugins_wordCloud.WordCloud);
+					 var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+		 
+					 series.accuracy = 4;
+					 series.step = 15;
+					 series.rotationThreshold = 0.7;
+					 series.maxCount = 60;
+					 series.minWordLength = 2;
+					 series.labels.template.tooltipText = "{word}: {value}";
+					 series.fontFamily = "Times New Roman";
+					 series.maxFontSize = am4core.percent(30);
+					 series.text = "<%=ds%>";
+					 series.labels.template.fill = am4core.color("#9F6BA0");
+					 console.log("series text  is " + series.text);
+			   });
+		</script>
+	</body>
 </html>

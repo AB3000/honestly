@@ -40,11 +40,6 @@ app.get("/wordle", (req, res) => {
 	var cont = req.query["contribution"];
 	var hasLoaded = false;
 
-
-	// console.log("search is " + search  + " and cont is " + contribution);
-
-	//scrape --> call py function
-
 	if(cont != null){
 		//save to db
 		word.findOne({keyword: search}, "keyword contributions", (err, wordData) => {
@@ -73,15 +68,7 @@ app.get("/wordle", (req, res) => {
 		} //else add nothing
 	});
 
-
-
-
-	//combine the results
-
-
-	//create wordle
-
-	//create wordle
+	//scrapes
 	var scraped = "";
 
 	console.log("Web Scraping starts");
@@ -89,7 +76,6 @@ app.get("/wordle", (req, res) => {
 	var py    = spawn('python', ['python_scripts/web_scraping.py', search]),
 	data = [1,2,3,4,5,6,7,8,9],
 	dataString = '';
-
 	py.stdout.on('data', function(data){
 		dataString += data.toString();
 	});
@@ -122,12 +108,12 @@ mongoose.set("useFindAndModify", false);
 
 
 const hostname = '127.0.0.1';
-const port = 3000;
+//const port = process.env.PORT;
+//console.log(process.env.PORT);
 
-
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(process.env.PORT || 3000, function(){
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 var spawn = require('child_process').spawn,
     py    = spawn('python', ['web_scraping.py']),
     data = [1,2,3,4,5,6,7,8,9],
