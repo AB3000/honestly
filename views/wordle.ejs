@@ -55,7 +55,9 @@
 		 
 					 var chart = am4core.create("wordleImage", am4plugins_wordCloud.WordCloud);
 					 var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-		 
+					  
+
+					 series.pattern = 
 					 series.accuracy = 4;
 					 series.step = 15;
 					 series.rotationThreshold = 0.7;
@@ -66,7 +68,6 @@
 					 series.maxFontSize = am4core.percent(30);
 					 series.text = "<%=ds%>";
 					 series.labels.template.fill = am4core.color("#FFFFFF");
-					 console.log("series text  is " + series.text);
 			   });
 
 				function showLoader() {
