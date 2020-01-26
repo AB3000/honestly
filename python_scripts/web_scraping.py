@@ -45,6 +45,9 @@ def cutString(fullText):
     #         fullText.remove(searchword)
     # except ValueError:
     #     pass
+    index = len(fullText) - 1
+    if len(fullText)>10000:
+        del fullText[8000: index ]
     listToStr = ' '.join([str(elem) for elem in fullText]) 
     return listToStr
 

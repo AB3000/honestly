@@ -36,7 +36,6 @@ mongoose.connect(
 );
 mongoose.set("useFindAndModify", false)
 */
-var wordle = "asdf";
 
 //Instead of sending Hello World, we render index.ejs
 app.get("/", (req, res) => {
@@ -132,8 +131,7 @@ app.get("/wordle", (req, res) => {
 		"width": 800,
 		"height": 800,
 		"colors": [
-			"#0000cc",
-			"#cc0000",
+			"#ffffff",
 		],
 		"font": "Times New Roman",
 		"use_stopwords": true,
@@ -143,14 +141,15 @@ app.get("/wordle", (req, res) => {
 
 	wordleReq.end(function (wordleRes) {
 		if (wordleRes.error) throw new Error(wordleRes.error);
-		wordle = wordleRes.body;
+		var wordle = wordleRes.body;
+		res.render("wordle", {base64: wordle, keyword: search})
 		console.log("Wordle Done");
 	});
 
 	});
 	// py.stdin.write(JSON.stringify(data));
 	// py.stdin.end();
-	res.render("wordle", {base64: wordle, keyword: search})
+	//res.render("wordle", {base64: wordle, keyword: search})
 });
 
 
