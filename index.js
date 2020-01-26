@@ -122,7 +122,7 @@ var spawn = require('child_process').spawn,
 	dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	  console.log('TEXT: ',dataString);
+	  //console.log('TEXT: ',dataString);
 	});
 py.stdin.write(JSON.stringify(data));
 py.stdin.end();
