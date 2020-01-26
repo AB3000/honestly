@@ -18,8 +18,10 @@ app.set("views", __dirname + "/views");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //MONGOOSE CONNECTION
+
 var mongoose = require("mongoose");
 //Connection start
+/*
 mongoose.Promise = global.Promise;
 mongoose.connect(
   "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/honestly?retryWrites=true&w=majority",
@@ -33,7 +35,7 @@ mongoose.connect(
   }
 );
 mongoose.set("useFindAndModify", false)
-
+*/
 var wordle = "asdf";
 
 //Instead of sending Hello World, we render index.ejs
@@ -47,8 +49,8 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.get("/wordle", (req, res) => {
-	var search = req.query["searchedQuery"]
-	var cont = req.query["contribution"]
+	var search = req.query["searchedQuery"];
+	var cont = req.query["contribution"];
 
 	// console.log("search is " + search  + " and cont is " + contribution);
 
@@ -92,7 +94,6 @@ app.get("/wordle", (req, res) => {
 
 	//create wordle
 	var scraped = "";
-
 
 	console.log("Web Scraping starts");
 	//console.log(scraped);
@@ -142,9 +143,6 @@ app.get("/wordle", (req, res) => {
 
 	wordleReq.end(function (wordleRes) {
 		if (wordleRes.error) throw new Error(wordleRes.error);
-		//var image = new Image()
-
-		//image.src = res.body;
 		wordle = wordleRes.body;
 		console.log("Wordle Done");
 	});
@@ -152,11 +150,7 @@ app.get("/wordle", (req, res) => {
 	});
 	// py.stdin.write(JSON.stringify(data));
 	// py.stdin.end();
-
-
-
 	res.render("wordle", {base64: wordle, keyword: search})
-
 });
 
 
