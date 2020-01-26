@@ -47,6 +47,9 @@ html,body{
 }
 .h1{
     color: var(--white);
+    /* white-space: nowrap;
+    display: inline; */
+
 }
 
 .title{
@@ -98,9 +101,12 @@ html,body{
 .keyword {
 	font-size: 70px;
 	color: var(--white);
-    margin: auto;
-	width: 50%;
-	text-align: center;
+  margin: auto;
+	/* width: 50%; */
+  text-align: center;
+  display: inline;
+  /* width: 50%; */
+  margin: 0 auto;
 }
 
 .search-again {
