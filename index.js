@@ -24,22 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //MONGOOSE CONNECTION
 
 var mongoose = require("mongoose");
-//Connection start
-/*
-mongoose.Promise = global.Promise;
-mongoose.connect(
-  "mongodb+srv://twistter:twist307@honestly-qllje.mongodb.net/honestly?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function(error) {
-    if (error) {
-      console.log("Couldn't connect to database");
-    } else {
-      console.log("Connected To Database");
-    }
-  }
-);
-mongoose.set("useFindAndModify", false)
-*/
 
 //Instead of sending Hello World, we render index.ejs
 app.get("/", (req, res) => {
