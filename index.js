@@ -102,8 +102,9 @@ app.get("/wordle", (req, res) => {
 	dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	//console.log('TEXT: ',dataString);
+	console.log('Web Scraping finished');
 	dataString+=" "+textRetrieved;
+
 	wordleReq.query({
 		"max_words": "16000",
 		"font": "Times New Roman",
