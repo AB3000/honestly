@@ -51,7 +51,7 @@ app.get("/wordle", (req, res) => {
 	var search = req.query["searchedQuery"];
 	var cont = req.query["contribution"];
 	var hasLoaded = false;
-	var wordle = "";
+
 
 	// console.log("search is " + search  + " and cont is " + contribution);
 
@@ -133,8 +133,7 @@ app.get("/wordle", (req, res) => {
 		"width": 800,
 		"height": 800,
 		"colors": [
-			"#0000cc",
-			"#cc0000",
+			"#ffffff",
 		],
 		"font": "Times New Roman",
 		"use_stopwords": true,
@@ -145,6 +144,7 @@ app.get("/wordle", (req, res) => {
 	wordleReq.end(function (wordleRes) {
 		if (wordleRes.error) throw new Error(wordleRes.error);
 		wordle = wordleRes.body;
+		//res.render("wordle", {base64: wordle, keyword: search})
 		console.log("Wordle Done");
 		hasLoaded = true;
 		res.render("wordle", {base64: wordle, keyword: search});
@@ -153,6 +153,7 @@ app.get("/wordle", (req, res) => {
 	});
 	// py.stdin.write(JSON.stringify(data));
 	// py.stdin.end();
+	//res.render("wordle", {base64: wordle, keyword: search})
 	//res.write("wordle", {base64: wordle, keyword: search});
 });
 
