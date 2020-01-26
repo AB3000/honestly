@@ -110,7 +110,7 @@ app.get("/wordle", (req, res) => {
 	dataString+=" "+textRetrieved;
 	wordleReq.query({
 		"max_words": "16000",
-		"font": "Times New Roman",
+		"font": "C:\Users\Aastha\Documents\GitHub\honestly\GoudyBookletter1911-Regular.ttf",
 		"language": "en",
 		"colors": "%5B'%23375E97'%2C '%23FB6542'%2C '%23FFBB00'%2C '%233F681C'%5D",
 		"use_stopwords": "true",
@@ -135,19 +135,30 @@ app.get("/wordle", (req, res) => {
 		"colors": [
 			"#ffffff",
 		],
-		"font": "Times New Roman",
+		"font": "Times-new-roman",
 		"use_stopwords": true,
 		"language": "en",
 		"uppercase": false
 	});
 
 	wordleReq.end(function (wordleRes) {
-		if (wordleRes.error) throw new Error(wordleRes.error);
+		// if (wordleRes.error) throw new Error(wordleRes.error);
+		try{
 		wordle = wordleRes.body;
 		//res.render("wordle", {base64: wordle, keyword: search})
 		console.log("Wordle Done");
 		hasLoaded = true;
 		res.render("wordle", {base64: wordle, keyword: search});
+		}
+		catch (error){
+			wordle = wordleReq.body;
+			res.render("wordle", {base64: wordle, keyword: search});
+		}
+		// wordle = wordleRes.body;
+		// //res.render("wordle", {base64: wordle, keyword: search})
+		// console.log("Wordle Done");
+		// hasLoaded = true;
+		// res.render("wordle", {base64: wordle, keyword: search});
 	});
 
 	});
