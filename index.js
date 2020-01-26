@@ -50,6 +50,8 @@ app.use(express.static(__dirname + '/public'));
 app.get("/wordle", (req, res) => {
 	var search = req.query["searchedQuery"];
 	var cont = req.query["contribution"];
+	var hasLoaded = false;
+	var wordle = "";
 
 	// console.log("search is " + search  + " and cont is " + contribution);
 
@@ -144,15 +146,16 @@ app.get("/wordle", (req, res) => {
 		var wordle = wordleRes.body;
 		res.render("wordle", {base64: wordle, keyword: search})
 		console.log("Wordle Done");
+		hasLoaded = true;
+		res.render("wordle", {base64: wordle, keyword: search});
 	});
 
 	});
 	// py.stdin.write(JSON.stringify(data));
 	// py.stdin.end();
 	//res.render("wordle", {base64: wordle, keyword: search})
+	//res.write("wordle", {base64: wordle, keyword: search});
 });
-
-
 
 //Connection start
 mongoose.Promise = global.Promise;
