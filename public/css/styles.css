@@ -36,6 +36,27 @@
   --gold: #C28E0E;
 }
 
+.left {
+  top: 0;
+  overflow: hidden;
+  background-color: var(--darkBlue);
+  position: fixed;
+  height: 100%;
+  width: 30%;
+  text-align: right;
+}
+
+.right {
+  top: 0;
+  position: absolute;
+  overflow: hidden;
+  width: 70%;
+  margin-left: 30%;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 html,body{
     /*background-color: var(--darkGray);*/
     background-image: radial-gradient(var(--darkGray), var(--blackGray));
@@ -44,6 +65,7 @@ html,body{
     font-family: 'GoudyBookletter';
     overflow-y: hidden;
     overflow-x: hidden;
+    margin: 0;
 }
 .h1{
     color: var(--white);
@@ -128,18 +150,11 @@ input[type=text] {
 
 #wordleImage {
 	position: relative;
-	height: 450;
-	width: 450;
 }
 
 #wordle {
-	position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
+	width: 100%;
     margin: auto;
-    z-index: -1;
 }
 
 #loader {
