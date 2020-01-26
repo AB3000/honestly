@@ -9,9 +9,9 @@
 	</script>
 
 	<body onload="loadWordle()" style="margin:0;">
-		<div>
+		<div id="page" class="center">
 			<div class="search-again">
-				<form action="/wordle" method="GET">
+				<form action="/wordle" method="GET" onsubmit="showLoader()">
 					<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
 				</form>
 			</div>
@@ -19,35 +19,26 @@
 			<br>
 			<h1 class="keyword"><%=keyword%></h1>
 			
-
-			<div id="loader"></div>
 			<div id="wordleImage">
 				<img id="wordle" src="<%=base64%>"/>
 			</div>
 
-			<script>
-				var isDone;
-
-				function loadWordle() {
-				  isDone = setTimeout(showPage, 100);
-				  console.log("test");
-				}
-
-				function showPage() {
-				  document.getElementById("loader").style.display = "none";
-				  document.getElementById("wordleImage").style.display = "block";
-				}
-			</script>
-
-
 			<div class="contribution">
-				<form action="/wordle" method="GET">
+				<form action="/wordle" method="GET" onsubmit="showLoader()">
 					<input type="text" name = "contribution" id="contribution" placeholder="add a contribution">
 					<br><br>
 					<input type="hidden" name = "searchedQuery" id="searchedQuery" value="<%= keyword%>">
-					<input class="submit-btn" type="submit" value="Add Contribution">
+					<!--<input class="submit-btn" type="submit" value="Add Contribution">-->				
 				</form>
 			</div>
 		</div>
+		<div id="loader"></div>
+
+		<script>
+			function showLoader() {
+			  document.getElementById("loader").style.display = "block";
+			  document.getElementById("page").style.display = "none";
+			}
+		</script>
 	</body>
 </html>
