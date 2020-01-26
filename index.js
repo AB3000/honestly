@@ -9,7 +9,7 @@ var sys   = require('util');
 var spawn = require('child_process').spawn;
 var word = require("./models/word"); //reference to word schema
 
-
+app.use(express.static(__dirname + "public")); //static file references
 
 
 //Set view engine to ejs
@@ -91,17 +91,18 @@ app.get("/wordle", (req, res) => {
 	dataString = '';
 
 	py.stdout.on('data', function(data){
-	dataString += data.toString();
-
+		dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	//console.log('TEXT: ',dataString);
-	dataString+=" "+textRetrieved;
-
+	   console.log('TEXT: ',dataString);
+	   dataString+= " "+textRetrieved;
+	   dataString = JSON.stringify(dataString);
+	   res.render("wordle", {ds: dataString, keyword: search});
 	});
+
 	py.stdin.write(JSON.stringify(data));
 	py.stdin.end();
-	res.write("wordle", {keyword: search});
+	
 });
 
 //Connection start
@@ -131,11 +132,11 @@ var spawn = require('child_process').spawn,
     py    = spawn('python', ['web_scraping.py']),
     data = [1,2,3,4,5,6,7,8,9],
     dataString = '';
-py.stdout.on('data', function(data){
-  dataString += data.toString();
-});
-py.stdout.on('end', function(){
-  console.log('TEXT: ',dataString);
-});
+	py.stdout.on('data', function(data){
+	dataString += data.toString();
+	});
+	py.stdout.on('end', function(){
+	  console.log('TEXT: ',dataString);
+	});
 py.stdin.write(JSON.stringify(data));
 py.stdin.end();
