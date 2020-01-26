@@ -83,7 +83,9 @@ def scrape_article(url):
     # rmove = ""
     # for  in index:
     #     rmove="*"+rmove
-    strings = strings.replace(searchword, "*****")
+    listquery = searchword.split()
+    for w in listquery:
+        strings = strings.replace(w, "*****")
     filter = ''.join([chr(i) for i in range(1, 32)])
     strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^A-Za-za-z ]+')
