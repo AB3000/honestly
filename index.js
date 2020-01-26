@@ -80,7 +80,6 @@ app.get("/wordle", (req, res) => {
 		dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	   console.log('TEXT: ',dataString);
 	   dataString+= " "+textRetrieved;
 	   dataString = JSON.stringify(dataString);
 	   res.render("wordle", {ds: dataString, keyword: search});
@@ -122,7 +121,6 @@ var spawn = require('child_process').spawn,
 	dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	  //console.log('TEXT: ',dataString);
 	});
 py.stdin.write(JSON.stringify(data));
 py.stdin.end();
