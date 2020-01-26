@@ -147,7 +147,7 @@ app.get("/wordle", (req, res) => {
 		wordle = wordleRes.body;
 		console.log("Wordle Done");
 		hasLoaded = true;
-		//res.render("wordle", {base64: wordle, keyword: search});
+		res.render("wordle", {base64: wordle, keyword: search});
 	});
 
 	});
