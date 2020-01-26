@@ -52,11 +52,6 @@ app.get("/wordle", (req, res) => {
 	var cont = req.query["contribution"];
 	var hasLoaded = false;
 
-
-	// console.log("search is " + search  + " and cont is " + contribution);
-
-	//scrape --> call py function
-
 	if(cont != null){
 		//save to db
 		word.findOne({keyword: search}, "keyword contributions", (err, wordData) => {
@@ -85,15 +80,7 @@ app.get("/wordle", (req, res) => {
 		} //else add nothing
 	});
 
-
-
-
-	//combine the results
-
-
-	//create wordle
-
-	//create wordle
+	//scrapes
 	var scraped = "";
 
 	console.log("Web Scraping starts");
@@ -101,22 +88,24 @@ app.get("/wordle", (req, res) => {
 	var py    = spawn('python', ['python_scripts/web_scraping.py', search]),
 	data = [1,2,3,4,5,6,7,8,9],
 	dataString = '';
-
 	py.stdout.on('data', function(data){
 	dataString += data.toString();
 	});
 	py.stdout.on('end', function(){
-	//console.log('TEXT: ',dataString);
+
+	//concatenate
 	dataString+=" "+textRetrieved;
+
+	//create wordle
 	wordleReq.query({
 		"max_words": "16000",
-		"font": "Times New Roman",
+		"font": "Arial",
 		"language": "en",
 		"colors": "%5B'%23375E97'%2C '%23FB6542'%2C '%23FFBB00'%2C '%233F681C'%5D",
 		"use_stopwords": "true",
 		"scaling": "1.0",
-		"width": "800",
-		"height": "800",
+		"width": "100",
+		"height": "100",
 		"text": "This is a test. I repeat%2C this is a test. We are only testing the functionality of this api%2C nothing else. End of test."
 	});
 	wordleReq.headers({
@@ -135,7 +124,7 @@ app.get("/wordle", (req, res) => {
 		"colors": [
 			"#ffffff",
 		],
-		"font": "Times New Roman",
+		"font": 'Arial',
 		"use_stopwords": true,
 		"language": "en",
 		"uppercase": false
