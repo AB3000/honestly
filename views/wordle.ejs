@@ -8,7 +8,7 @@
 		console.log("<%=base64%>");
 	</script>
 
-	<body>
+	<body onload="loadWordle()" style="margin:0;">
 		<div>
 			<div class="search-again">
 				<form action="/wordle" method="GET">
@@ -17,8 +17,29 @@
 			</div>
 			<br>
 			<br>
-			<div class="keyword"><%=keyword%></h1>
-			<img id="wordle" src="<%=base64%>"/>
+			<h1 class="keyword"><%=keyword%></h1>
+			
+
+			<div id="loader"></div>
+			<div id="wordleImage">
+				<img id="wordle" src="<%=base64%>"/>
+			</div>
+
+			<script>
+				var myVar;
+
+				function loadWordle() {
+				  myVar = setTimeout(showPage, 3000);
+				  console.log("test");
+				}
+
+				function showPage() {
+				  document.getElementById("loader").style.display = "none";
+				  document.getElementById("wordleImage").style.display = "block";
+				}
+			</script>
+
+
 			<div class="contribution">
 				<form action="/wordle" method="GET">
 					<input type="text" name = "contribution" id="contribution" placeholder="add a contribution">
