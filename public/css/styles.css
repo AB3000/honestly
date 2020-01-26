@@ -54,6 +54,7 @@
   padding: 0px;
   margin-top: 0px;
   margin-bottom: 0px;
+  height: 100%;
 }
 
 html,body{
@@ -137,13 +138,19 @@ html,body{
 	float: center;
 	margin-top: 10px;
 	padding: 12px 12px;
-	border: 2px solid var(--darkGray);
-	background-color: var(--lightGray);
+	background-color: var(--gray);
 	text-align: left;
 	border-radius: 20px;
+	border-width: 0px;
 	font-family: 'GoudyBookletter';
 	font-size: 20px;
-	color: var(--white);
+	color: var(--lightGray);
+	transition-duration: .5s;
+}
+
+.submit-btn:hover {
+	background-color: #444444;
+	transition-duration: .5s;
 }
 
 input[type=text], textarea {
@@ -169,13 +176,17 @@ input[type=text], textarea {
 	/*position: relative;*/
 	overflow: hidden;
 	text-align: center;
+	height: 100%;
 }
 
 #wordle {
     max-width:100%;
 	max-height:100%;
-	
 	object-fit: cover;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 #loader {

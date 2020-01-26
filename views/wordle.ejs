@@ -14,7 +14,7 @@
 				<div>
 					<div class="search-again">
 						<form action="/wordle" method="GET" onsubmit="showLoader()">
-							<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
+							<input type="text" name="searchedQuery" id="searchedQuery" placeholder="search" autocomplete="off">
 						</form>
 					</div>
 					<div class="keyword"><%=keyword%></div>
@@ -30,10 +30,8 @@
 			</div>
 
 			<div class="right">
-				<div>
-					<div id="wordleImage">
-						<img id="wordle" src="<%=base64%>"/>
-					</div>
+				<div id="wordleImage">
+					<img id="wordle" src="<%=base64%>"/>
 				</div>
 			</div>
 		</div>
