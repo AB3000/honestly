@@ -79,10 +79,6 @@ def scrape_article(url):
     # strings = preg_replace( '/(\r\n)+|\r+|\n+|\t+/i', ' ', strings )
     strings = strings.replace("\\r","")
     strings = strings.replace("\\n","")
-    # index = len(searchword)
-    # rmove = ""
-    # for  in index:
-    #     rmove="*"+rmove
     listquery = searchword.split()
     for w in listquery:
         strings = strings.replace(w, "*****")
@@ -90,10 +86,6 @@ def scrape_article(url):
     strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^A-Za-za-z ]+')
     answer = re.sub(pat, '', strings)
-    #answer = re.sub('[!@#$À-ÿ]', '', strings)
-    # print(content)
-    #return content
-    ##print(answer)
     return answer 
 
 
@@ -116,11 +108,12 @@ def printResult(query):
     #sys.stdout.flush()
 
 if __name__ == "__main__":
+
     # nltk.download('stopwords')
     # nltk.download('punkt')
     # nltk.download('words')
     # nltk.download('wordnet')
-    query = str(sys.argv[1])
+    query = str(sys.argv[1].lower())
     searchword = query
     combine_strings(get_top_results(query))
     # printResult("Pokemon")
