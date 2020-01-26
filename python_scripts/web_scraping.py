@@ -45,6 +45,9 @@ def cutString(fullText):
     #         fullText.remove(searchword)
     # except ValueError:
     #     pass
+    index = len(fullText) - 1
+    if len(fullText)>10000:
+        del fullText[8000: index ]
     listToStr = ' '.join([str(elem) for elem in fullText]) 
     return listToStr
 
@@ -77,7 +80,6 @@ def scrape_article(url):
     # strings = preg_replace( '/(\r\n)+|\r+|\n+|\t+/i', ' ', strings )
     strings = strings.replace("\\r","")
     strings = strings.replace("\\n","")
-    strings = strings.replace("happy","")
     filter = ''.join([chr(i) for i in range(1, 32)])
     strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^A-Za-za-z ]+')
