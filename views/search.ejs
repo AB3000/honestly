@@ -5,10 +5,18 @@
 </head>
 <script src="https://kit.fontawesome.com/09bfef98a3.js" crossorigin="anonymous"></script>
 <body>
-	<div class="center">
+	<div id="page" class="center">
 		<div class="title">honestly.</div>
-		<form action="/wordle" method="GET">
+		<form action="/wordle" method="GET" onsubmit="showLoader()">
 			<input class="search-input" type="text" name="searchedQuery" id="searchedQuery" placeholder="search">
 		</form>
 	</div>
+	<div id="loader"></div>
+
+	<script>
+		function showLoader() {
+		  document.getElementById("loader").style.display = "block";
+		  document.getElementById("page").style.display = "none";
+		}
+	</script>
 </body>
