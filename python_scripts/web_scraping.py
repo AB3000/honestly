@@ -82,10 +82,6 @@ def scrape_article(url):
     strings.translate(str.maketrans('', '', filter))
     pat = re.compile(r'[^A-Za-za-z ]+')
     answer = re.sub(pat, '', strings)
-    #answer = re.sub('[!@#$À-ÿ]', '', strings)
-    # print(content)
-    #return content
-    ##print(answer)
     return answer 
 
 
@@ -108,10 +104,10 @@ def printResult(query):
     #sys.stdout.flush()
 
 if __name__ == "__main__":
-    # nltk.download('stopwords')
-    # nltk.download('punkt')
-    # nltk.download('words')
-    # nltk.download('wordnet')
+    #nltk.download('stopwords')
+    #nltk.download('punkt')
+    #nltk.download('words')
+    #nltk.download('wordnet')
     query = str(sys.argv[1])
     searchword = query
     combine_strings(get_top_results(query))
